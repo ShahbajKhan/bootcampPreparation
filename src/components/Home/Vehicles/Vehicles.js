@@ -10,7 +10,7 @@ const Vehicles = () => {
         fetch('./fakeData.json')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                
                 setVehicles(data);
             })
     }, [])

@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react/cjs/react.development';
+import useAuth from '../../../hooks/useAuth';
 import carLogo from '../../../images/654.jpg' 
 const Navbar = () => {
+    
+    const {loggedInUser, logOut} = useAuth();
+ 
+    
     return (
         <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light">
@@ -19,17 +25,16 @@ const Navbar = () => {
                             <Link to="/home" className="nav-link">Home</Link>
                             <Link to="/home" className="nav-link">About us</Link>
                             <Link to="/home" className="nav-link">Vehicles</Link>
-                            {
-                                <Link to="/bookingsList" className="nav-link">User Dashboard</Link>
-                            }
-                            {
-                                 <Link to="/admin/orderList" className="nav-link">Admin</Link>
-                            }
+                            
                             <Link to="/home" className="nav-link">Contact</Link>
-                            {
+                            {   
+                                loggedInUser?.email?
+                                 <button className="btn btn-warning me-2" onClick={logOut} >Log out</button> :
                                  <button className="btn btn-warning me-2" >Log In</button> 
                             }
-                            { <button className="btn btn-success"></button>}
+                            { 
+                                loggedInUser?.displayName && <button className="btn btn-success">{loggedInUser?.displayName}</button>
+                            }
                         </div>
                     </div>
                 </div>
