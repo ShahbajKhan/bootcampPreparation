@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home/Home/Home";
 import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
+import Success from "./components/ServiceDetail/Success";
 import Login from "./components/Shared/Login/Login";
 import Navbar from "./components/Shared/Navbar/Navbar";
 import NotFound from "./components/Shared/NotFound/NotFound";
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login></Login>
+          </Route>
+          <Route exact path="/success/:id">
+            <Success></Success>
           </Route>
           <PrivateRoute path="/bookVehicle/:id">
             <ServiceDetail></ServiceDetail>

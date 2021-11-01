@@ -18,7 +18,7 @@ const useFirebase = () => {
     }
 
     const registerUser = (email, password) => {
-        console.log("from hook", email, password);
+        // console.log("from hook", email, password);
         setIsLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
 
