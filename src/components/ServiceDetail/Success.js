@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useLocation, useParams } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 
 const Success = () => {
+    let history = useHistory()
     const {id} =useParams();
     const [vehicles, setVehicles] = useState([]);
     useEffect(()=>{
@@ -11,10 +12,17 @@ const Success = () => {
         .then(res=>setVehicles(res.data))
     },[id])
     const validatePayment = () =>{
-        console.log(id);
-        fetch(`http://localhost:5000/validate/${id}`)
-        .then(res =>res.json())
-        .then(data => console.log(data))
+        const data={
+            tran_id:id,
+            val_id: vehicles?.val_id
+        }
+        axios.post(`http://localhost:5000/validate`, data)
+        .then(res =>{
+            if(res.data){
+                alert("Order placed successfully")
+                history.push('/home')
+            }
+        })
     }
 
     return (
@@ -30,7 +38,7 @@ const Success = () => {
             <div className="col-md-12 col-lg-6">
                 <img src={vehicles?.imageURL} alt="" className="img-fluid w-100"/>
             </div>
-            <button onClick={validatePayment}>Purchase</button>
+            <button onClick={validatePayment}>Confirm</button>
         </main>
     );
 };

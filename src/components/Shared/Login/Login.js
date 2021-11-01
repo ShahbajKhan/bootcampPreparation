@@ -32,18 +32,18 @@ const Login = () => {
         console.log(email, password);
         registerUser(email, password).then(result => {
             setUserName(name)
-            .then(result => {
-                console.log("name updated", name)
-             })
+                .then(result => {
+                    console.log("name updated", name)
+                })
             history.push(redirect_uri);
         })
-            
+
     }
     return (
         <div className="container">
 
             <div className="row align-items-center" style={{ height: "100vh" }}>
-                <form className="col-md-6 shadow p-5" onSubmit={createUser}>
+                <div className="col-md-6 shadow p-5">
                     <div className="form-group">
                         <label htmlFor="">Name</label>
                         <input onChange={handleNameChange} type="text" className="form-control" />
@@ -60,12 +60,13 @@ const Login = () => {
                         <label htmlFor="" className="text-danger">Forgot your password?</label>
                     </div>
                     <div className="from-group mt-5">
-                        <button className="btn btn-primary" type="submit">Register</button>
+                        <button className="btn btn-primary" type="submit" onClick={createUser}>Register</button>
                     </div>
-                    <div className="from-group mt-5">
-                        <button className="btn btn-primary" onClick={handleGoogleLogin}>Google Sign in</button>
-                    </div>
-                </form>
+
+                    <button className="btn btn-primary mt-3" onClick={handleGoogleLogin}>Google Sign in</button>
+                </div>
+                
+                
                 <div className="col-md-6 d-none d-md-block">
                     <img className="img-fluid" src={BannerImage} alt="" />
                 </div>
